@@ -46,8 +46,8 @@ const registerUser = async (req, res) => {
 
   res.cookie("token", token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production", // true in production, false in dev
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  secure: true,
+  sameSite: "None",
 });
 
   res.status(201).json({
@@ -79,10 +79,10 @@ async function loginUser(req, res) {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
  res.cookie("token", token, {
-   httpOnly: true,
-   secure: process.env.NODE_ENV === "production",
-   sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
- });
+ httpOnly: true,
+ secure: true,
+ sameSite: "None",
+});
 
   res.status(200).json({
     message: "user logged in successfully",
@@ -129,10 +129,10 @@ async function registerSeller(req, res) {
   const token = jwt.sign({ id: seller._id }, process.env.JWT_SECRET);
 
   res.cookie("token", token, {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-});
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+  });
 
   res.status(201).json({
     message: "Seller registered successfully!",
@@ -165,8 +165,8 @@ async function loginSeller(req, res) {
 
   res.cookie("token", token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  secure: true,
+  sameSite: "None",
 });
 
   res.status(200).json({
